@@ -1,1 +1,1 @@
-# Gradient-Text-Color-Effects
+# Text Effects Codes
