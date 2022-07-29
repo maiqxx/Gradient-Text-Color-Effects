@@ -1,1 +1,1 @@
-# HTML/CSS Text Effects
+# HTML/CSS Scraps
