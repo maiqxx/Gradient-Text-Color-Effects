@@ -1,1 +1,1 @@
-# HTML/CSS Scraps
+# HTML-CSS-JS Scraps
