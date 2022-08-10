@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        
+        
+    </head>
+    
+    <body>
+        <div class="container">
+            <div class="card" data-index="1"></div>
+            <div class="card" data-index="2"></div>
+            <div class="card" data-index="3"></div>
+            <div class="card" data-index="4"></div>
+            <div class="card" data-index="5"></div>
+            <div class="card" data-index="6"></div>
+            <div class="card" data-index="7"></div>
+            <div class="card" data-index="8"></div>
+            <div class="card" data-index="9"></div>
+        </div>
+
+        <script rel="stylesheet" type="text/javascript" >
+            const cards = Array. from(document. querySelectorAll( ".card")) ;
+            const winner = [[1,2,3],[4,5,6], [7,8,9], [1,5,9],
+            [3,5,71, [1,4,7], [2,5,8], [3,6,9]]];
+            let firstPlayer = [], secondPlayer = [], count = 0;
+            function check(array){
+            let finalResult = false;
+            for(let item of winner){
+                let res = item.every(val => array.indexOf(val)!==-1);
+                if(res){
+                    finalResult = true;
+                    break;
+                }
+            }
+            return finalResult;
+            }
+
+            function winnerpleyr(p){
+                const modal = document.createElement("div");
+                const player = document.createTextNode(P);
+                const replay = document.createElement("button");
+                modal.classList.add("winner");
+                modal.appendChild(replay);
+                replay.appendChild(document.createTextNode("Replay"));
+                replay.onclick = function(){ rep()};
+                modal.appendChild(modal);
+            }
+
+            function draw() {
+                if(this.classList == "card"){
+                    count++;
+                    if(count%2 == 0){
+                        this.classList.add("x");
+                        firstPlayer.push(Number(this.dataset.index));
+                        if(check(firstPlayer)){
+                            winnerpleyr("Congrats! Player one, you won!");
+                        }
+                } else{
+                    this.classList.add("o");
+                    secondPlayer.push(Number(this.dataset.index));
+                    if(check(secondPlayer)){
+                        winnerpleyr("Congrats! Player two, you won!");
+                    }
+                }
+
+                if(count === 9){
+                    winnerpleyr("Draw!");
+                }
+            }
+        }
+
+        function rep(){
+            const w = document.querySelector(".winner");
+            firstPlayer = [];
+            secondPlayer = [];
+            count = 0;
+            w.remove();
+        }
+        cards.forEach(card => card.addEventListener("click", draw));
+
+    
+        </script>
+    </body>
+</html>
