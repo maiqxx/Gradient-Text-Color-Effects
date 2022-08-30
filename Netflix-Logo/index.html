@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Netflix Logo</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    body{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #000;
+    }
+
+    .netflix-logo{
+        position: relative;
+        height: 416px;
+        width: 288px;
+        overflow: hidden;
+    }
+
+    .netflix-logo::before{
+        content: '';
+        bottom: -100px;
+        left: 0;
+        position: absolute;
+        height: 120px;
+        width: 100%;
+        background-color: #000000;
+        border-top-left-radius: 100px;
+        border-top-right-radius: 100px;
+        z-index: 3;
+        transform:scaleX(1.5);
+    }
+
+    .netflix-logo::after, h3::before{
+        content: '';
+        width: 200%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: linear-gradient(to right, transparent,#000, #000);
+        z-index: 3;
+        animation: anima 1.8 linear forwards;
+    }
+
+    @keyframes anima {
+        0%{
+            right: 0%;
+        }
+        100%{
+            right: -200%;
+        }
+    }
+
+    .netflix-logo span {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 96px;
+        background-color: #fff;
+    }
+
+    .netflix-logo span:nth-child(1){
+        background-color: #b00612;
+        left: 0;
+    }
+
+    .netflix-logo span:nth-child(2){
+        background-color: #e52a15;
+        transform-origin: top left;
+        transform: skewX(24.79deg);
+        z-index: 1;
+        box-shadow: 0 0  40px rgba(0, 0, 0, 0.8);
+    }
+
+    .netflix-logo span:nth-child(3){
+        background: #b00612;
+        right: 0;
+    }
+
+    h3{
+        position: relative;
+        color: #fff;
+        text-align: center;
+        font-family: Arial;
+        text-transform: uppercase;
+        font-size: 58px;
+        letter-spacing: 8px;
+    }
+
+</style>
+<body>
+    <div class="container">
+        <div class="netflix-logo">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <h3>Netflix</h3>
+    </div>
+
+ </body>
+ </html>
+ 
