@@ -4,10 +4,68 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Social Icons Using CSS</title>
+   <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
 </head>
 <style>
+    .social-icons{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .social-icons li{
+        display: inline-block;
+        margin: 0.15rem;
+        position: relative;
+        font-size: 1.2em;
+    }
+
+    .social-icons i{
+        color: #fff;
+        position: absolute;
+        top: 21px;
+        left: 21px;
+        transition: all 265ms ease-out;
+    }
+
+    .social-icons a{
+        display: inline-block;
+    }
+
+    .social-icons a::before{ 
+        transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        -o-transform: scale(1);
+        -moz-transform: scale(1);
+        content: " ";
+        width: 60px;
+        height: 60px;
+        border-radius: 100%;
+        background-color: linear-gradient(43deg, #4158D0 0%, #C850C0 40%, #FFCC70 100%);
+        transition: all 265ms ease-out;
+    }
+
+    .social-icons a:hover::before{
+        transform: scale(0);
+        transition: all 265ms ease-in;
+    }
+
+    .social-icons a:hover i{
+        transform: scale(2);
+        -ms-transform: scale(2);
+        -webkit-transform: scale(2);
+        -o-transform: scale(2);
+        -moz-transform: scale(2);
+        color:#fff;
+        background: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all 265ms ease-in;
+    }
 
 </style>
+
 
 <body>
     <ul class="social-icons">
