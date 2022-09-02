@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Clock with Neumorphism Effect</title>
+</head>
+<style>
+    body{
+        display: grid;
+        place-content: center;
+        height: 100vh;
+        background-color: #dde1dde7;
+    }
+
+    .container{
+        height: 200px;
+        width: 200px;
+        box-shadow: inset -7px -3px 10px #ffffff73, inset 10px 3px 10px rgb(94, 104, 121, 0.288);
+    }
+
+    .clock::after{
+        position: absolute;
+        left: 10%;
+        top: 10%;   
+        content: " ";
+        height: 80%;
+        width: 80%;
+        background-color: transparent;
+        box-shadow: inset -5px -3px -10px #ffffff73, inset 10px 3px 10px rgb(94, 104, 121, 0.288);
+        border-radius: 50%;
+    }
+
+    .clock{
+        height: 90%;
+        width: 90%;
+        background-color: #dde1dde7;
+        border-radius: 50%;
+        position: relative;
+        left: 10px;
+        top: 10px;
+        box-shadow: -10px -5px 10px #ffffff73, 10px 5px 10px rgb(94, 104, 121, 0.288);
+        border:0.4px solid rgba(183, 178, 178, 0.288);
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        position: relative;
+        text-align: center;
+    }
+
+    .hours{
+        position: absolute;
+        font-size: 90%;
+        height: 100%;
+        font-weight: bold;
+    }
+
+    .arms{
+        transform-origin:  bottom;
+        background-color: rgb(42, 42, 42);
+        position: absolute;
+        top: 30px;
+        width: 5px;
+        height: 35px;
+        border-radius: 20px;
+        box-shadow: 3px 7px 10px 0.1px rgb(145, 143, 145);
+    }
+
+    .hours-arm{
+        height: 25%;
+        top: 50px;
+    }
+
+    .seconds-arm{
+        height: 36%;
+        top: 27px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="clock">
+            <div class="hours"><p>12</p></div>
+            <div class="hours">|</div>
+            <div class="hours">|</div>
+            <div class="hours"><p style="transform: rotateZ(-90deg);">3</p></div>
+            <div class="hours">|</div>
+            <div class="hours">|</div>
+            <div class="hours"><p style="transform: rotateZ(180deg);">6</p></div>
+            <div class="hours">|</div>
+            <div class="hours">|</div>
+            <div class="hours"><p style="transform: rotateZ(90deg);">9</p></div>
+            <div class="hours">|</div>
+            <div class="hours">|</div>
+            <div class="arms hours-arm"></div>
+            <div class="arms minutes-arm"></div>
+            <div class="arms seconds-arm"></div>
+        </div>
+    </div>
+    
+    <script>
+        var increment = 30;
+        for (var i = 0; i <= 11; i++){
+            var w = i * increment;
+            var hours = document.getSelectorAll(".hours");
+            var s = (hours[i].style.transform = "rotate(" + w + "deg)");
+        }
+
+        var timing = setInterval(time, 1000);
+        function time(){
+            var arms = document.querySelectorAll(".arms");
+            var date = new Date();
+            var hour = date.getHours() * 30;
+            var min = date.getMinutes() * 6;
+            var sec = date.getSeconds() * 6;
+            arms[0].style.transform = "rotateZ(" + hour + "deg)";
+            arms[1].style.transform = "rotateZ(" + min + "deg)";
+            arms[3].style.transform = "rotateZ(" + sec + "deg)";
+        }
+    </script>
+
+</body>
+</html>
