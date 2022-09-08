@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" lang="">
+    <head>
+        <title>Snake Game</title>
+    </head>
+    <style>
+        #snake{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+        }
+    </style>
+<body>
+    <canvas id="snake" width="200" height="200"></canvas>
+
+    <script>
+        var snake = {
+            x: 50, y: 100,
+            x: 40, y: 100,
+            x: 30, y: 100,
+            x: 20, y: 100,
+            x: 10, y: 100
+        }
+        var changeDir = false
+        var food = {}
+        var dx = 10, dy = 10;
+        var speed = 6;
+
+        const box = document.getElementById("snake");
+        const board = box.getContext("2d");
+
+        var looping = setInterval(Loop, 1000 / (2 * speed))
+        GenerateFood()
+
+        document.addEventListener("keydown", ChangeDirection)
+
+        function Loop(){
+            if(IsGameOver()){
+                clearInterval(looping)
+                return
+            }
+            changeDir() = false
+            ClearBoard()
+            DrawFood()
+            MoveSnake()
+            DrawSnake()
+        }
+
+        function MoveSnake(){
+            var head ={
+                x: snake[0].x + dx,
+                y: snake[0].y + dy
+            }
+            snake.unshift(head);
+            var hasEatenFood = snake[0].x == food.x && snake[0].y == food.y
+            if(hasEatenFood) GenerateFood()
+            else snake.pop();
+        }
+
+        function DrawSnake(){
+            snake.forEach( function (block){
+                board.fillStyle = "black";
+                board.strokeStyle = "gray";
+                board.fillRect(block.x, block.y, 10, 10);
+                board.strokeStyle(block.x, block.y, 10, 10)
+            });
+        }
+
+        function ClearBoard(){
+            board.fillStyle = "white";
+            board.strokeStyle = "black";
+            board.fillRect(0, 0, box.width, box.height);
+            board.strokeRect(0, 0, box.width, box.height);
+        }
+
+        function IsGameOver(){
+            for(var i=4; i < snake.length; i++){
+                if(snake[i].x === snake[0].x && 
+                snake.[i].y === snake[0].y)
+                return true
+            }
+            const lw = snake[0].x < 0
+            const rw = snake[0].x > box.width - 10
+            const tw = snake[0].y < 0
+            const bw = snake[0].x > box.width - 10
+            return lw || rw || tw || bw
+        }
+
+        function ChangeDirection(e){
+            const lk = 37, rk = 39, uk = 38, dk = 40;
+
+            if(changeDir) return
+            changeDir = true
+            let k = e.keyCode;
+            let toUp = dy === -10,
+                toDown = dy === 10,
+                toLeft = dx === -10,
+                toRight = dx === 10;
+
+            if(k === lk && !toRight){
+                dx = -10 , dy = 0;
+            }
+            if(k === rk && !toLeft){
+                dx = 10 , dy = 0;
+            }
+            if(k === uk && !toDown){
+                dx = 0 , dy = -10;
+            }
+            if(k === dk && !toUp){
+                dx = 0 , dy = 10;
+            }
+        } 
+
+        function GenerateFood(){
+            food.x = randPos(0, box.width - 10)
+            food.y = randPos(0, box.height - 10)
+            snake.forEach(function (block){
+                var eaten = block.x == food.x && block.y == food.y
+                if(eaten)GenerateFood()
+            })
+        }
+
+        function randPos(min, max){
+            return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+        }
+
+        function DrawFood(){
+            board.fillStyle = "red";
+            board.strokeStyle = "darkred";
+            board.fillRect(food.x, food.y, 10, 10);
+            board.strokeRect(food.x, food.y, 10, 10);
+        }
+    </script>
+</body>
+</html>
